@@ -99,7 +99,13 @@ public class CharacterService {
     }
 
     public Page<ChrOnlineListRtnDTO> getChrOnlineList(ChrOnlineListReqDTO request) {
-        Collection<Character> chrList = Server.getInstance().getWorld(request.getWorld()).getPlayerStorage().getAllCharacters();
+        List<World> worlds = Server.getInstance().getWorlds();
+        Collection<Character> chrList = new ArrayList<>();
+        for (World world : worlds) {
+            Collection<Character> worldCharacters = world.getPlayerStorage().getAllCharacters();
+            //add to chrList
+            chrList.addAll(worldCharacters);
+        }
         return BasePageUtil.create(chrList, request)
                 .filter(chr -> (Objects.isNull(request.getId()) || Objects.equals(chr.getId(), request.getId()))
                         && (RequireUtil.isEmpty(request.getName()) || chr.getName().contains(request.getName()))
