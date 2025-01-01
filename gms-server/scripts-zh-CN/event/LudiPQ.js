@@ -25,7 +25,7 @@
 
 var isPq = true;
 var minPlayers = 5, maxPlayers = 6;
-var minLevel = 35, maxLevel = 50;
+var minLevel = 35, maxLevel = 200;
 var entryMap = 922010100;
 var exitMap = 922010000;
 var recruitMap = 221024500;
@@ -55,7 +55,6 @@ function getMaxLobbies() {
 
 function setEventRequirements() {
     var reqStr = "";
-
     reqStr += "\r\n   组队人数: ";
     if (maxPlayers - minPlayers >= 1) {
         reqStr += minPlayers + " ~ " + maxPlayers;

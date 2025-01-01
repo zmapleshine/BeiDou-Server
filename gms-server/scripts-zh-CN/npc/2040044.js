@@ -56,14 +56,27 @@ function action(mode, type, selection) {
 
         var eim = cm.getPlayer().getEventInstance();
 
+        if(eim == null){
+            cm.warp(922010000, 0);
+            cm.sendOk("你不在任何组队任务中,我只能送你到这了。");
+            cm.dispose()
+            return;
+        }
+
         if (eim.getProperty(stage.toString() + "stageclear") != null) {
-            cm.sendNext("快点，去下一个阶段，传送门已经打开了！");
+            if (status == 1){
+                cm.warp(922011100, 0);
+            }else {
+                cm.sendOk("恭喜你！你已经打败了Boss#b阿丽莎乐#k,我送你到外面去吧。");
+                status = 0;
+                return
+            }
         } else {
             if (eim.isEventLeader(cm.getPlayer())) {
                 var state = eim.getIntProperty("statusStg" + stage);
 
                 if (state == -1) {           // preamble
-                    cm.sendOk("嗨。欢迎来到#bBOSS阶段#k。在那个平台上杀死老鼠，揭示出阿利莎尔，并打败他！");
+                    cm.sendOk("这是最后一个阶段；这将是对你力量的最后考验。杀死台子上的#b玩具黑鼠#k就会召唤#b阿丽莎乐#k，给我它掉落的#b#t4001023#k,你就通关了，祝你好运。");
                     eim.setProperty("statusStg" + stage, 0);
                 } else {                      // check stage completion
                     if (cm.haveItem(4001023, 1)) {
@@ -73,13 +86,11 @@ function action(mode, type, selection) {
                         var list = eim.getClearStageBonus(stage);     // will give bonus exp & mesos to everyone in the event
                         eim.giveEventPlayersExp(list.get(0));
                         eim.giveEventPlayersMeso(list.get(1));
-
                         eim.setProperty(stage + "stageclear", "true");
                         eim.showClearEffect(true);
-
                         eim.clearPQ();
                     } else {
-                        cm.sendNext("请击败阿利莎并把他的#b#t4001023#带给我。#k");
+                        cm.sendNext("请击败#b阿丽莎乐#k并把他的#b#t4001023#带给我。#k");
                     }
                 }
             } else {

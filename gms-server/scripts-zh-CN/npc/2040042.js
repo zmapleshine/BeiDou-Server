@@ -64,13 +64,13 @@ function action(mode, type, selection) {
         var eim = cm.getPlayer().getEventInstance();
 
         if (eim.getProperty(stage.toString() + "stageclear") != null) {
-            cm.sendNext("快点，去下一个阶段，传送门已经打开了！");
+            cm.sendNext("恭喜你！你已经通过第七阶段了，次元传送门已经打开，快点到下一阶段吧。");
         } else {
             if (eim.isEventLeader(cm.getPlayer())) {
                 var state = eim.getIntProperty("statusStg" + stage);
 
                 if (state == -1) {           // preamble
-                    cm.sendOk("嗨。欢迎来到#b舞台#k。你需要远程人员在这里。他们必须杀死三只老鼠，这将触发一些东西。接下来就是你自己去发现了！给我3张通行证！");
+                    cm.sendOk("欢迎来到 #b第七阶段#k. 你需要远程人员在这里。他们必须杀死三只老鼠，这将触发一些东西。接下来就是你自己去发现了！给我3张通行证！");
                     eim.setProperty("statusStg" + stage, 0);
                 } else if (state == 0) {       // check stage completion
                     if (cm.haveItem(4001022, 3)) {
@@ -80,7 +80,7 @@ function action(mode, type, selection) {
                         eim.setProperty("statusStg" + stage, 1);
                         clearStage(stage, eim, curMap);
                     } else {
-                        cm.sendNext("抱歉，你没有全部3个 #b#t4001022#。#k");
+                        cm.sendNext("你确定给我带来了#r3个 #b#t4001022#k?");
                     }
                 }
             } else {

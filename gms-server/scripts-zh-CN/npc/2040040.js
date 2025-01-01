@@ -63,13 +63,13 @@ function action(mode, type, selection) {
         var eim = cm.getPlayer().getEventInstance();
 
         if (eim.getProperty(stage.toString() + "stageclear") != null) {
-            cm.sendNext("快点，去下一个阶段，传送门已经打开了！");
+            cm.sendNext("恭喜你！你已经通过第五阶段了，次元传送门已经打开，快点到下一阶段吧。");
         } else {
             if (eim.isEventLeader(cm.getPlayer())) {
                 var state = eim.getIntProperty("statusStg" + stage);
 
                 if (state == -1) {           // preamble
-                    cm.sendOk("嗨。欢迎来到#bstage#k。这是第二阶段，但每个人都必须合作。这里有6个传送门。一个被无法战胜的怪物守卫着，一个非常高。我希望你和你的队伍分别进入每一个，并打破里面的箱子。带回掉落物品——应该有24个。");
+                    cm.sendOk("欢迎来到 #b第五阶段#k. 每个人都必须合作。这里有6个传送门。一个被无法战胜的怪物守卫着，一个非常高。我希望你和你的队伍分别进入每一个，并打破里面的箱子。带回掉落物品——应该有24个。");
                     eim.setProperty("statusStg" + stage, 0);
                 } else {       // check stage completion
                     if (cm.haveItem(4001022, 24)) {
@@ -79,11 +79,11 @@ function action(mode, type, selection) {
                         eim.setProperty("statusStg" + stage, 1);
                         clearStage(stage, eim, curMap);
                     } else {
-                        cm.sendNext("抱歉，你没有24个#b#t4001022#。#k");
+                        cm.sendNext("你确定给我带来了#r24个#b#t4001022#k?");
                     }
                 }
             } else {
-                cm.sendNext("请告诉你的#b队伍领袖#k来找我谈话。");
+                cm.sendNext("请让你的#b队长#k来找我谈话。");
             }
         }
 

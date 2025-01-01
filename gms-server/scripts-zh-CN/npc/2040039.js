@@ -63,13 +63,13 @@ function action(mode, type, selection) {
         var eim = cm.getPlayer().getEventInstance();
 
         if (eim.getProperty(stage.toString() + "stageclear") != null) {
-            cm.sendNext("快点，去下一个阶段，传送门已经打开了！");
+            cm.sendNext("恭喜你！你已经通过第四阶段了，次元传送门已经打开，快点到下一阶段吧。");
         } else {
             if (eim.isEventLeader(cm.getPlayer())) {
                 var state = eim.getIntProperty("statusStg" + stage);
 
                 if (state == -1) {           // preamble
-                    cm.sendOk("嗨。欢迎来到#bstage#k。在这个阶段，有几种生物隐藏在这座塔的内部阴影中。其中一些无法通过物理手段击败，因此需要使用魔法攻击来完成任务，而其他一些则相反。这次给我带来6个#t4001022#。");
+                    cm.sendOk("欢迎来到 #b第四阶段#k. 在这个阶段，有几种生物隐藏在这座塔的内部阴影中。其中一些无法通过物理手段击败，因此需要使用魔法攻击来完成任务，而其他一些则相反。这次给我带来6个#t4001022#。");
                     eim.setProperty("statusStg" + stage, 0);
                 } else {                      // check stage completion
                     if (cm.haveItem(4001022, 6)) {

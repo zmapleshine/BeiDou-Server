@@ -92,13 +92,13 @@ function action(mode, type, selection) {
         var eim = cm.getPlayer().getEventInstance();
 
         if (eim.getProperty(stage.toString() + "stageclear") != null) {
-            cm.sendNext("快点，去下一个阶段，传送门已经打开了！");
+            cm.sendNext("请赶快进入下一阶段，入口已经打开了！");
         } else {
             if (eim.isEventLeader(cm.getPlayer())) {
                 var state = eim.getIntProperty("statusStg" + stage);
 
                 if (state == -1) {           // preamble
-                    cm.sendOk("嗨。欢迎来到 #bstage " + stage + "#k。在这个阶段，让你的队伍中的5名成员站在那些箱子上，以形成正确的组合来解锁下一个阶段。只有一个玩家应该留在所需的箱子上以确定组合。");
+                    cm.sendOk("欢迎来到 #b第八阶段#k. 在这个阶段，让你的队伍中的5名成员站在那些箱子上，以形成正确的组合来解锁下一个阶段。只有一个玩家应该留在所需的箱子上以确定组合。");
 
                     var st = (debug) ? 2 : 0;
                     eim.setProperty("statusStg" + stage, st);
@@ -154,7 +154,7 @@ function action(mode, type, selection) {
                     }
                 }
             } else {
-                cm.sendNext("请告诉你的#b队伍领袖#k来找我谈话。");
+                cm.sendNext("请让你的#b队长#k来找我谈话。");
             }
         }
 

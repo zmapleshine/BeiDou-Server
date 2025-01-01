@@ -63,13 +63,13 @@ function action(mode, type, selection) {
         var eim = cm.getPlayer().getEventInstance();
 
         if (eim.getProperty(stage.toString() + "stageclear") != null) {
-            cm.sendNext("快点，去下一个阶段，传送门已经打开了！");
+            cm.sendNext("恭喜你！你已经通过第二阶段了，次元传送门已经打开，快点到下一阶段吧。");
         } else {
             if (eim.isEventLeader(cm.getPlayer())) {
                 var state = eim.getIntProperty("statusStg" + stage);
 
                 if (state == -1) {           // preamble
-                    cm.sendOk("嗨。欢迎来到 #bstage#k。收集地图上散落的 15 个 #t4001022#，然后和我交谈。");
+                    cm.sendOk("欢迎来到 #b第二阶段#k. 收集地图上散落的 15 个 #t4001022#，然后和我交谈。");
                     eim.setProperty("statusStg" + stage, 0);
                 } else {       // check stage completion
                     if (cm.haveItem(4001022, 15)) {
