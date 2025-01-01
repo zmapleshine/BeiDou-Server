@@ -683,7 +683,7 @@ public class Server {
         TimeZone.setDefault(TimeZone.getTimeZone(GameConfig.getServerString("timezone")));
 
         log.info(I18nUtil.getLogMessage("Server.init.info4"));
-        final int worldCount = Math.min(GameConstants.WORLD_NAMES.length, GameConfig.getConfig().getJSONObject("world").size());
+        final int worldCount = Math.min(GameConstants.WORLD_NAMES.length, GameConfig.getServerInt("world_size"));
 
         // 重置登录状态和雇佣商店状态
         accountService.resetAllLoggedIn();

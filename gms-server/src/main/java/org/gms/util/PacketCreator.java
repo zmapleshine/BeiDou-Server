@@ -844,6 +844,7 @@ public class PacketCreator {
         final OutPacket p = OutPacket.create(SendOpcode.SERVER_IP);
         p.writeShort(0);
         byte[] addr = inetAddr.getAddress();
+        System.out.println("IP: " + inetAddr.getHostAddress()+"Port: "+port);
         p.writeBytes(addr);
         p.writeShort(port);
         p.writeInt(clientId);
