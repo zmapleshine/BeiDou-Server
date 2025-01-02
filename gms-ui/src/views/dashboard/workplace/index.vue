@@ -169,12 +169,6 @@
   import { Message } from '@arco-design/web-vue';
   import useLoading from '@/hooks/loading';
   import { useRouter } from 'vue-router';
-  import {
-    reloadEventsByGMCommand,
-    reloadMapsByGMCommand,
-    reloadPortalsByGMCommand,
-  } from '@/api/command';
-  import { useI18n } from 'vue-i18n';
 
   const { t } = useI18n();
   const { loading, setLoading } = useLoading(false);
@@ -294,87 +288,6 @@
       await loadSeverStatus();
       setLoading(false);
     }
-  };
-
-  const handleShutdownConfirm = async () => {
-    try {
-      setLoading(true);
-      await shutdown();
-      Message.success(t('workplace.button.shutdown.success'));
-      // 立即尝试更新服务器状态
-      await loadSeverStatus();
-    } catch (err) {
-      console.error(err);
-      Message.error(t('common.requestFailed'));
-    } finally {
-      shutdownConfirmVisible.value = false;
-      setLoading(false);
-    }
-  };
-
-  const handleShutdownCancel = () => {
-    shutdownConfirmVisible.value = false;
-  };
-
-  const handleRestartConfirm = async () => {
-    try {
-      setLoading(true);
-      await restartServer();
-      Message.success(t('common.operationSuccess'));
-    } catch (err) {
-      console.error(err);
-      Message.error(t('common.requestFailed'));
-    } finally {
-      restartConfirmVisible.value = false;
-      setLoading(false);
-    }
-  };
-
-  const handleRestartCancel = () => {
-    restartConfirmVisible.value = false;
-  };
-  const handleStopConfigOk = async () => {
-    try {
-      setLoading(true);
-      const stopConfigParams = {
-        minutes: stopConfigData.minutes,
-        shutdownMsg: stopConfigData.shutdownMsg,
-        showServerMsg: stopConfigData.showServerMsg,
-        showCenterMsg: stopConfigData.showCenterMsg,
-        showChatMsg: stopConfigData.showChatMsg,
-      };
-
-      await stopServer(stopConfigParams);
-      Message.success(t('workplace.stop.shutdownInProgress'));
-
-      // 如果设置了延迟时间，则启动一个定时器，在延迟时间结束后更新服务器状态
-      if (stopConfigData.minutes > 0) {
-        setTimeout(async () => {
-          await loadSeverStatus();
-        }, stopConfigData.minutes * 60 * 1000);
-      } else {
-        // 如果没有设置延迟时间，立即更新服务器状态
-        await loadSeverStatus();
-      }
-
-      stopConfigVisible.value = false;
-    } catch (err) {
-      console.error(err);
-      Message.error(t('common.requestFailed'));
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleStopConfigCancel = () => {
-    Object.assign(stopConfigData, {
-      minutes: 0,
-      shutdownMsg: '',
-      showServerMsg: false,
-      showCenterMsg: false,
-      showChatMsg: false,
-    });
-    stopConfigVisible.value = false;
   };
 </script>
 
