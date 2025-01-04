@@ -36,7 +36,7 @@ function enter(pi) {
     }
 
     if (!pi.haveItem(4001017)) {    // thanks Conrad for pointing out missing checks for token item and unused reactor
-        pi.getPlayer().dropMessage(5, "扎昆祭台需要 火焰之眼 ，否则无法召唤扎昆BOSS，请准备好所需物品再来挑战。");
+        pi.getPlayer().dropMessage(5, "扎昆祭台需要 火焰的眼 ，否则无法召唤扎昆BOSS，请准备好所需物品再来挑战。");
         return false;
     }
 

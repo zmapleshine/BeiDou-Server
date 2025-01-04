@@ -99,10 +99,10 @@ function action(mode, type, selection) {
             cm.sendNextPrev("你需要诚实而坚定地回答每一个问题。如果你能正确回答所有问题，那么圣石将正式接受你，并交给你#b#t4031058##k。把项链拿回来，我会帮助你迈向下一步。祝你好运。");
         }
     } else if (cm.getPlayer().gotPartyQuestItem("JB3") && selection == 0) {
-        cm.sendNext("去，和#b#p1052001#对话，然后给我带来#b#t4031057#。");
+        cm.sendNext("去，和#b#p2030006#对话#k，然后给我带来#b#t4031058##k。");
         cm.dispose();
     } else if (cm.getPlayer().gotPartyQuestItem("JBQ") && selection == 0) {
-        cm.sendNext("去，和#b#p2030006#对话#k，然后给我带来#b#t4031058##k。");
+        cm.sendNext("去，和#b#p1052001#对话，然后给我带来#b#t4031057#。");
         cm.dispose();
     } else {
         if (sel == undefined) {
