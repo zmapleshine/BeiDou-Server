@@ -80,8 +80,8 @@ public final class Channel {
     private static final Logger log = LoggerFactory.getLogger(Channel.class);
     private static final int BASE_PORT = 19000;
 
-    private final int port;
-    private final String ip;
+    private  int port;
+    private  String ip;
     private final int world;
     private final int channel;
 
@@ -134,6 +134,10 @@ public final class Channel {
         this.mapManager = new MapManager(null, world, channel);
         this.port = BASE_PORT + (this.channel - 1) + (world * 100);
         this.ip = serviceProperty.getWanHost() + ":" + port;
+        if(world==8 && channel ==1 ){
+            this.port = 12127;
+            this.ip =serviceProperty.getWanHost() + ":" + port;
+        }
 
         ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock(true);
         this.merchRlock = rwLock.readLock();
